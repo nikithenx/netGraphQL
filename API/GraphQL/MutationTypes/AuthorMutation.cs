@@ -2,9 +2,10 @@ using API.Contracts;
 using API.DTOs.Authors;
 using API.Entities;
 
-namespace API.MutationTypes
+namespace API.GraphQL.MutationTypes
 {
-    public class AuthorMutationTypes
+    [ExtendObjectType("Mutation")]
+    public class AuthorMutation
     {
         public async Task<Author> CreateAuthor([Service] IAuthorRepository repo, AuthorCreateDto createDto)
         {

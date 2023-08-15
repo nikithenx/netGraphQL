@@ -3,7 +3,8 @@ using API.Entities;
 
 namespace API.GraphQL.QueryTypes
 {
-    public class AuthorQueryTypes
+    [ExtendObjectType("Query")]
+    public class AuthorQuery
     {
         public async Task<IEnumerable<Author>> GetAuthorsAsync([Service] IAuthorRepository repo)
             => await repo.GetAllAsync();
