@@ -6,14 +6,17 @@ namespace API.GraphQL.QueryTypes
     [ExtendObjectType("Query")]
     public class BookQuery
     {
-        public async Task<IEnumerable<Book>> GetBooksAsync([Service] IBookRepository repo)
-            => await repo.GetAllAsync();
+        [UseProjection]
+        public IQueryable<Book> GetBooks([Service] IBookRepository repo)
+            => repo.GetAll();
 
-        public async Task<IEnumerable<Book>> GetByAuthorAsync([Service] IBookRepository repo, int authorId)
-            => await repo.GetByAuthorAsync(authorId);
+        [UseProjection]
+        public IQueryable<Book> GetBooksByAuthor([Service] IBookRepository repo, int authorId)
+            => repo.GetByAuthor(authorId);
 
-        public async Task<IEnumerable<Book>> GetByTitleAsync([Service] IBookRepository repo, 
+        [UseProjection]
+        public IQueryable<Book> GetBooksByTitle([Service] IBookRepository repo, 
             string title, StringComparison comparison, bool isEqual = true)
-            => await repo.GetByTitleAsync(title, comparison, isEqual);
+            => repo.GetByTitle(title, comparison, isEqual);
     }
 }

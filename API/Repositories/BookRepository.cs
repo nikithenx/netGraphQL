@@ -20,25 +20,24 @@ namespace API.Repositories
             return await _db.SaveChangesAsync() > 0 ? book : null;
         }
 
-        public async Task<IEnumerable<Book>> GetAllAsync()
-            => await _db.Books.AsNoTracking().ToListAsync();
+        public IQueryable<Book> GetAll() => _db.Books.AsNoTracking();
 
-        public async Task<IEnumerable<Book>> GetByAuthorAsync(int authorId)
-            => await _db.Books.Where(x => x.AuthorId == authorId).AsNoTracking().ToListAsync();
+        public IQueryable<Book> GetByAuthor(int authorId)
+            => _db.Books.Where(x => x.AuthorId == authorId).AsNoTracking();
 
-        public async Task<IEnumerable<Book>> GetByTitleAsync(string title, StringComparison comparison, bool isEqual)
+        public IQueryable<Book> GetByTitle(string title, StringComparison comparison, bool isEqual)
         {
             if (string.IsNullOrEmpty(title)) 
             {
-                return Enumerable.Empty<Book>();
+                return Enumerable.Empty<Book>().AsQueryable();
             }                
             
             if (isEqual)
             {
-                return await _db.Books.Where(x => x.Title.Equals(title, comparison)).ToListAsync();
+                return _db.Books.Where(x => x.Title.Equals(title, comparison));
             }
 
-            return await _db.Books.Where(x => x.Title.Contains(title, comparison)).ToListAsync();
+            return _db.Books.Where(x => x.Title.Contains(title, comparison));
         }
     }
 }

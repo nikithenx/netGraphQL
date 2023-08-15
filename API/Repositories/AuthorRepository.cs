@@ -23,18 +23,11 @@ namespace API.Repositories
         public async Task<bool> DeleteAsync(int id)
             => await _db.Authors.Where(x => x.Id == id).ExecuteDeleteAsync() > 0;
 
-        public async Task<IEnumerable<Author>> GetAllAsync() 
-            => await _db.Authors.AsNoTracking().ToArrayAsync();
+        public IQueryable<Author> GetAll() => _db.Authors;
 
-        public async Task<IEnumerable<Author>> GetAllWithBooksAsync()
-            => await _db.Authors
-                .Include(x => x.Books)
-                .AsSplitQuery()
-                .AsNoTracking()
-                .ToArrayAsync();
+        public IQueryable<Author> GetAllWithBooks() => _db.Authors.Include(x => x.Books);
 
-        public async Task<Author> GetByIdAsync(string id)
-            => await _db.Authors.FirstOrDefaultAsync(x => x.Guid == id);
+        public IQueryable<Author> GetById(string id) => _db.Authors.Where(x => x.Guid == id);
 
         public async Task<bool> UpdateAsync(Author author)
         {

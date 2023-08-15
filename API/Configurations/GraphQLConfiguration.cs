@@ -8,6 +8,7 @@ namespace API.Configurations
         public static IServiceCollection RegisterGraphQLTypes(this IServiceCollection services)
         {
             services.AddGraphQLServer()
+                .AddProjections()
                 .AddQueryType(q => q.Name("Query"))
                 .AddType<AuthorQuery>()
                 .AddType<BookQuery>()
