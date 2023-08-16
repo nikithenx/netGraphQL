@@ -1,0 +1,19 @@
+query getAuthors {
+    authors {
+        firstName
+        lastName
+        age
+        gender
+    }
+}
+
+query getAuthorsWithBooks {
+    authors {
+        firstName
+        lastName
+        books {
+            title
+            isbn
+        }
+    }
+}
