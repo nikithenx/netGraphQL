@@ -1,0 +1,70 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  authors: [Author]
+  authorsWithBooks: [Author]
+  author(id: String): Author
+  books: [Book]
+  booksByAuthor(authorId: Int!): [Book]
+  booksByTitle(title: String comparison: StringComparison! isEqual: Boolean! = true): [Book]
+}
+
+type Mutation {
+  createAuthor(createDto: AuthorCreateDtoInput): Author
+  updateAuthor(updateDto: AuthorUpdateDtoInput): Boolean!
+  deleteAuthor(id: Int!): Boolean!
+  createBook(createDto: BookCreateDtoInput): Book
+}
+
+enum StringComparison {
+  CURRENT_CULTURE
+  CURRENT_CULTURE_IGNORE_CASE
+  INVARIANT_CULTURE
+  INVARIANT_CULTURE_IGNORE_CASE
+  ORDINAL
+  ORDINAL_IGNORE_CASE
+}
+
+type Book {
+  id: Int!
+  guid: String
+  authorId: Int!
+  title: String
+  isbn: String
+  author: Author
+}
+
+type Author {
+  id: Int!
+  guid: String
+  firstName: String!
+  lastName: String!
+  age: Int!
+  gender: String
+  books: [Book]
+}
+
+input AuthorCreateDtoInput {
+  firstName: String
+  lastName: String
+  age: Int!
+  gender: String
+}
+
+input AuthorUpdateDtoInput {
+  id: Int!
+  guid: String
+  firstName: String
+  lastName: String
+  age: Int!
+  gender: String
+}
+
+input BookCreateDtoInput {
+  authorId: Int!
+  title: String
+  isbn: String
+}

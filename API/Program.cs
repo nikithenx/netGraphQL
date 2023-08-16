@@ -13,11 +13,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.RegisterGraphQLTypes();
+builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder => {
+    builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+}));
 
 var app = builder.Build();
 
 app.MapGraphQL();
 
 app.UseHttpsRedirection();
+
+app.UseCors("CorsPolicy");
 
 app.Run();
