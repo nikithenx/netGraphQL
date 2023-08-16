@@ -8,3 +8,4 @@ Simple GraphQL API that is consumed in a Blazor WASM application.
 * Entity Framework Core as ORM
 * HotChocolate as GraphQL server
 * StrawberryShake as GraphQL client
+* MudBlazor as UI component library
