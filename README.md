@@ -1,9 +1,10 @@
 ## About
 
-Simple API project that provides an easy way to query Author and Book data from an SQL database
+Simple GraphQL API that is consumed in a Blazor WASM application.
 
 ### Built With
 
 * .NET7 as target framework
 * Entity Framework Core as ORM
-* HotChocolate as GraphQL NuGet package
+* HotChocolate as GraphQL server
+* StrawberryShake as GraphQL client
