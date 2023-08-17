@@ -42,7 +42,7 @@ type Author {
   guid: String
   firstName: String!
   lastName: String!
-  age: Int!
+  age: Int
   gender: String
   bio: String
   icon: String
@@ -52,7 +52,7 @@ type Author {
 input AuthorCreateDtoInput {
   firstName: String
   lastName: String
-  age: Int!
+  age: Int
   gender: String
   bio: String
 }

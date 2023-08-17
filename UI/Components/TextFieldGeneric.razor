@@ -1,0 +1,29 @@
+
+@typeparam T
+
+<MudTextField @bind-Value:get="@Value" 
+              @bind-Value:set="@OnValueChanged"
+              Variant="Variant.Outlined"
+              Margin="Margin.Normal"
+              Label="@Label"
+              Lines="@Lines"
+              Immediate 
+              Required="@Required" />
+
+@code {
+
+    [Parameter] public T Value { get; set; }
+    [Parameter] public EventCallback<T> ValueChanged { get; set; }
+    [Parameter] public string Label { get; set; }
+    [Parameter] public int Lines { get; set; } = 1;
+    [Parameter] public bool Required { get; set; } = false;
+
+    private void OnValueChanged(T newValue)
+    {
+        if (newValue is not null)
+        {
+            Value = newValue;
+            ValueChanged.InvokeAsync(Value);
+        }
+    }
+}

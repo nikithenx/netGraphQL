@@ -9,6 +9,13 @@ query getAuthors {
     }
 }
 
+query getAuthor($id: String){
+    author(id:$id){
+        firstName
+        lastName
+    }
+}
+
 query getAuthorsWithBooks {
     authors {
         firstName
@@ -17,5 +24,12 @@ query getAuthorsWithBooks {
             title
             isbn
         }
+    }
+}
+
+query getBooks {
+    books {
+        title
+        isbn
     }
 }

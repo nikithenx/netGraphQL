@@ -1,0 +1,6 @@
+
+mutation CreateAuthor($createDto: AuthorCreateDtoInput){
+  createAuthor(createDto: $createDto){
+    guid
+  }
+}

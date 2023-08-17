@@ -1,0 +1,75 @@
+
+@page "/authors/create"
+@inject INetGraphQLClient _client
+@inject NavigationManager _navManager
+@inject ISnackbar Snackbar
+
+<div class="d-flex flex-row">
+    <MudContainer MaxWidth="MaxWidth.Large">
+        <MudText Typo="Typo.h5"
+                 class="my-5">
+            <b>Create Author</b>
+        </MudText>
+        <EditForm Model="@_authorCreate" OnValidSubmit="OnCreateAsync">
+        <DataAnnotationsValidator/>
+            <MudGrid>
+                <MudItem xs="6" sm="6" md="3">
+                    <TextFieldGeneric @bind-Value="@_authorCreate.FirstName"
+                                      Label="First Name"
+                                      Required />
+                </MudItem>
+                <MudItem xs="6" sm="6" md="3">
+                    <TextFieldGeneric @bind-Value="@_authorCreate.LastName"
+                                      Label="Last Name"
+                                      Required />
+                </MudItem>
+                <MudItem xs="6" sm="6" md="3">
+                    <TextFieldGeneric @bind-Value="@_authorCreate.Age"
+                                      Label="Age"
+                                      Required />
+                </MudItem>
+                <MudItem xs="6" sm="6" md="3">
+                    <SelectGeneric @bind-Value="@_authorCreate.Gender"
+                                   Label="Gender"
+                                   Required />
+                </MudItem>
+                <MudItem xs="12" sm="12" md="12">
+                    <TextFieldGeneric @bind-Value="@_authorCreate.Bio"
+                                      Label="Bio" 
+                                      Lines="3"
+                                      Required />
+                </MudItem>
+            </MudGrid>
+            <MudCardActions>
+                <MudButton ButtonType="ButtonType.Submit" 
+                           Variant="Variant.Filled" 
+                           Color="Color.Primary" 
+                           Class="ml-auto">
+                        Create
+                </MudButton>
+            </MudCardActions>
+        </EditForm>
+        
+    </MudContainer>
+</div>
+
+
+@code {
+
+    private AuthorCreateDtoInput _authorCreate = new();
+
+    private async Task OnCreateAsync()
+    {
+        var result = await _client.CreateAuthor.ExecuteAsync(_authorCreate);
+        if (result is not null)
+        {
+            string guid = result.Data.CreateAuthor.Guid;
+            _navManager.NavigateTo($"/author/{guid}");
+            Snackbar.Add("Author created successfully", Severity.Success);
+        }
+        else 
+        {
+            Snackbar.Add("Author not created", Severity.Error);
+        }
+    }
+}

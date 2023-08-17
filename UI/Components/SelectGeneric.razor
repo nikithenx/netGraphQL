@@ -1,0 +1,32 @@
+
+@typeparam T
+
+<MudSelect 
+        @bind-Value:get="@Value" 
+        @bind-Value:set="@OnValueChanged"
+        Variant="Variant.Outlined"
+        Margin="Margin.Normal"
+        Label="@Label"
+        Immediate 
+        Required="@Required">
+    <MudSelectItem Value="@("m")">male</MudSelectItem>
+    <MudSelectItem Value="@("f")">female</MudSelectItem>
+</MudSelect>
+
+@code {
+
+    [Parameter] public T Value { get; set; }
+    [Parameter] public EventCallback<T> ValueChanged { get; set; }
+    [Parameter] public string Label { get; set; }
+    [Parameter] public int Lines { get; set; } = 1;
+    [Parameter] public bool Required { get; set; } = false;
+
+    private void OnValueChanged(T newValue)
+    {
+        if (newValue is not null)
+        {
+            Value = newValue;
+            ValueChanged.InvokeAsync(Value);
+        }
+    }
+}
