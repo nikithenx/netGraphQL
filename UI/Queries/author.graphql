@@ -4,6 +4,7 @@ query getAuthors {
         lastName
         age
         gender
+        bio
     }
 }
 

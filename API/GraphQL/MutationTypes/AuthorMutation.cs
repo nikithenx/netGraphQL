@@ -14,7 +14,8 @@ namespace API.GraphQL.MutationTypes
                 FirstName = createDto.FirstName,
                 LastName = createDto.LastName,
                 Gender = createDto.Gender,
-                Age = createDto.Age
+                Age = createDto.Age,
+                Bio = createDto.Bio,
             };
             return await repo.CreateAsync(author);
         }
@@ -28,7 +29,8 @@ namespace API.GraphQL.MutationTypes
                 FirstName = updateDto.FirstName,
                 LastName = updateDto.LastName,
                 Gender = updateDto.Gender,
-                Age = updateDto.Age
+                Age = updateDto.Age,
+                Bio = updateDto.Bio,
             };
             return await repo.UpdateAsync(author);
         }

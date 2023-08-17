@@ -1,0 +1,28 @@
+
+<div style="@_style">
+    <MudPaper class="d-flex flex-column" 
+              Elevation="3" 
+              Square="false"
+              style="width: 25%; height: 18%">
+        <MudProgressCircular 
+            Color="Color.Primary" 
+            Indeterminate 
+            class="mx-auto my-auto"
+        />
+        <MudText Typo="Typo.button"
+                 class="mx-auto my-auto">
+            Loading...
+        </MudText>
+    </MudPaper>
+</div>
+
+@code {
+
+    private static string _appBarHeight = AppTheme.GetTheme().LayoutProperties.AppbarHeight;
+    private string _style = $@" 
+            height: calc(100vh - {_appBarHeight}); 
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;";
+}

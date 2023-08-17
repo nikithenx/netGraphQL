@@ -3,7 +3,7 @@
   "documents": "**/*.graphql",
   "extensions": {
     "strawberryShake": {
-      "name": "NetGrahpQLClient",
+      "name": "NetGraphQLClient",
       "url": "http://localhost:5154/graphql/",
       "records": {
         "inputs": false,

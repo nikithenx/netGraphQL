@@ -44,6 +44,7 @@ type Author {
   lastName: String!
   age: Int!
   gender: String
+  bio: String
   books: [Book]
 }
 
@@ -52,6 +53,7 @@ input AuthorCreateDtoInput {
   lastName: String
   age: Int!
   gender: String
+  bio: String
 }
 
 input AuthorUpdateDtoInput {
@@ -61,6 +63,7 @@ input AuthorUpdateDtoInput {
   lastName: String
   age: Int!
   gender: String
+  bio: String
 }
 
 input BookCreateDtoInput {

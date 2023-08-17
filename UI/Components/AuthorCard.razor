@@ -1,0 +1,26 @@
+
+<MudCard>
+    <MudCardHeader>
+        <CardHeaderAvatar>
+            <MudAvatar Color="Color.Primary">@_abbreviatedName</MudAvatar>
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">@Author.FirstName @Author.LastName</MudText>
+            <MudText Typo="Typo.body2">@($"-{Author.Gender}, {Author.Age} years")</MudText> 
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudIconButton Icon="@Icons.Material.Filled.MenuBook" Color="Color.Default" />
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardMedia Image="images/..." Height="200" />
+    <MudCardContent>
+        <MudText Typo="Typo.body2">@(Author.Bio ?? "-")</MudText>
+    </MudCardContent>
+</MudCard>
+
+@code {
+
+    [Parameter] public IGetAuthors_Authors Author { get; set; }    
+    private string _abbreviatedName => Author is null ? "AA" : $"{Author.FirstName[0]}{Author.LastName[0]}";
+
+}

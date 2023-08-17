@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider />
+<MudThemeProvider Theme="@GetMudTheme()" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -12,13 +12,17 @@
         <NavMenu/>
     </MudDrawer>
     <MudMainContent>
-        @Body
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+             @Body
+        </MudContainer>
     </MudMainContent>
 </MudLayout>
 
 @code {
 
     private bool _drawerOpen = true;
+
     private void DrawerToggle() => _drawerOpen = !_drawerOpen;
+    private MudTheme GetMudTheme() => AppTheme.Initialize();
     
 }
