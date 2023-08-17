@@ -5,6 +5,7 @@ query getAuthors {
         age
         gender
         bio
+        icon
     }
 }
 

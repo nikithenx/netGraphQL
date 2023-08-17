@@ -1,24 +1,40 @@
 ﻿@page "/"
 
-<UseGetAuthors Context="result">
-    <ChildContent>
-        @if (result?.Authors is not null)
-        {
-            <MudGrid class="py-4">
-                @foreach (var item in result.Authors)
-                {
-                    <MudItem xs="12" sm="6" md="4">
-                        <AuthorCard Author="@item" />
-                    </MudItem>
-                }
-            </MudGrid>
-        }
-    </ChildContent>
-    <ErrorContent>
-        Something went wrong ...<br />
-        @result.First().Message
-    </ErrorContent>
-    <LoadingContent>
-        <Loading />
-    </LoadingContent>
-</UseGetAuthors>
+@inject INetGraphQLClient _client
+
+@if (_isLoading)
+{
+    <Loading />
+}
+else 
+{
+    @if (_authors is not null)
+    {
+        <MudGrid class="py-4">
+            @foreach (var item in _authors)
+            {
+                <MudItem xs="12" sm="6" md="4">
+                    <AuthorCard Author="@item" />
+                </MudItem>
+            }
+        </MudGrid>
+    }
+    else 
+    {
+        <Error />
+    }
+}
+
+@code {
+
+    private IReadOnlyList<IGetAuthors_Authors> _authors;
+    private bool _isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await _client.GetAuthors.ExecuteAsync();
+        _authors = result?.Data?.Authors;
+
+        _isLoading = false;
+    }
+}

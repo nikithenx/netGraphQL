@@ -31,6 +31,7 @@ namespace API.GraphQL.MutationTypes
                 Gender = updateDto.Gender,
                 Age = updateDto.Age,
                 Bio = updateDto.Bio,
+                Icon = updateDto.Icon,
             };
             return await repo.UpdateAsync(author);
         }

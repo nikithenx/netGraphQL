@@ -9,5 +9,6 @@ namespace API.DTOs.Authors
         public int Age { get; set; }
         public string Gender { get; set; }
         public string Bio { get; set; }
+        public string Icon { get; set; }
     }
 }
