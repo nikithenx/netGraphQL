@@ -10,7 +10,11 @@
         </CardHeaderContent>
         <CardHeaderActions>
             <MudTooltip Text="Show Books">
-                <MudIconButton Icon="@Icons.Material.Filled.MenuBook" Color="Color.Secondary" />
+                <MudIconButton Icon="@Icons.Material.Filled.MenuBook" Color="Color.Dark" />
+            </MudTooltip>
+            <MudTooltip Text="Delete Author">
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error"
+                               OnClick="@(async() => await OnDelete.InvokeAsync(Author.Id))" />
             </MudTooltip>
         </CardHeaderActions>
     </MudCardHeader>
@@ -26,6 +30,7 @@
 
 @code {
     [Parameter] public IGetAuthors_Authors Author { get; set; }   
-    private string _abbreviatedName => Author is null ? "AA" : $"{Author.FirstName[0]}{Author.LastName[0]}";
+    [Parameter] public EventCallback<int> OnDelete { get; set; }
 
+    private string _abbreviatedName => Author is null ? "AA" : $"{Author.FirstName[0]}{Author.LastName[0]}";
 }

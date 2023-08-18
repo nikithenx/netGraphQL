@@ -6,11 +6,9 @@ mutation CreateAuthor($createDto: AuthorCreateDtoInput){
 }
 
 mutation UpdateAuthor($updateDto: AuthorUpdateDtoInput){
-  updateAuthor(updateDto: $updateDto){
-  }
+  updateAuthor(updateDto: $updateDto)
 }
 
 mutation DeleteAuthor($id: Int!){
-  deleteAuthor(id: $id){
-  }
+  deleteAuthor(id: $id)
 }

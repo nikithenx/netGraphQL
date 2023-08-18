@@ -5,54 +5,58 @@
 @inject ISnackbar Snackbar
 
 <div class="d-flex flex-row">
-    <MudContainer MaxWidth="MaxWidth.Large">
+    <MudContainer MaxWidth="MaxWidth.Medium">
         <MudText Typo="Typo.h5"
                  class="my-5">
             <b>Create Author</b>
         </MudText>
-        <EditForm Model="@_authorCreate" OnValidSubmit="OnCreateAsync">
-        <DataAnnotationsValidator/>
-            <MudGrid>
-                <MudItem xs="6" sm="6" md="3">
-                    <TextFieldGeneric @bind-Value="@_authorCreate.FirstName"
-                                      Label="First Name"
-                                      Required
-                                      ErrorMessage="@(() => _authorCreate.FirstName)" />
-                </MudItem>
-                <MudItem xs="6" sm="6" md="3">
-                    <TextFieldGeneric @bind-Value="@_authorCreate.LastName"
-                                      Label="Last Name"
-                                      Required
-                                      ErrorMessage="@(() => _authorCreate.LastName)" />
-                </MudItem>
-                <MudItem xs="6" sm="6" md="3">
-                    <TextFieldGeneric @bind-Value="@_authorCreate.Age"
-                                      Label="Age"
-                                      Required
-                                      ErrorMessage="@(() => _authorCreate.Age)" />
-                </MudItem>
-                <MudItem xs="6" sm="6" md="3">
-                    <SelectGeneric @bind-Value="@_authorCreate.Gender"
-                                   Label="Gender"
-                                   Required />
-                </MudItem>
-                <MudItem xs="12" sm="12" md="12">
-                    <TextFieldGeneric @bind-Value="@_authorCreate.Bio"
-                                      Label="Bio" 
-                                      Lines="3"
-                                      Required
-                                      ErrorMessage="@(() => _authorCreate.Bio)" />
-                </MudItem>
-            </MudGrid>
-            <MudCardActions>
-                <MudButton ButtonType="ButtonType.Submit" 
-                           Variant="Variant.Filled" 
-                           Color="Color.Primary" 
-                           Class="ml-auto">
-                        Create
-                </MudButton>
-            </MudCardActions>
-        </EditForm>     
+        <MudPaper Elevation="3" class="pa-4 rounded-lg" Square="false">
+            <EditForm Model="@_authorCreate" OnValidSubmit="OnCreateAsync">
+            <DataAnnotationsValidator/>
+                <MudGrid>
+                    <MudItem xs="6" sm="6" md="3">
+                        <TextFieldGeneric @bind-Value="@_authorCreate.FirstName"
+                                        Label="First Name"
+                                        Required
+                                        ErrorMessage="@(() => _authorCreate.FirstName)" />
+                    </MudItem>
+                    <MudItem xs="6" sm="6" md="3">
+                        <TextFieldGeneric @bind-Value="@_authorCreate.LastName"
+                                        Label="Last Name"
+                                        Required
+                                        ErrorMessage="@(() => _authorCreate.LastName)" />
+                    </MudItem>
+                    <MudItem xs="6" sm="6" md="3">
+                        <TextFieldGeneric @bind-Value="@_authorCreate.Age"
+                                        Label="Age"
+                                        Required
+                                        ErrorMessage="@(() => _authorCreate.Age)" />
+                    </MudItem>
+                    <MudItem xs="6" sm="6" md="3">
+                        <SelectGeneric @bind-Value="@_authorCreate.Gender"
+                                    Label="Gender"
+                                    Required
+                                    ErrorMessage="@(() => _authorCreate.Gender)" />
+                    </MudItem>
+                    <MudItem xs="12" sm="12" md="12">
+                        <TextFieldGeneric @bind-Value="@_authorCreate.Bio"
+                                        Label="Bio" 
+                                        Lines="3"
+                                        Required
+                                        ErrorMessage="@(() => _authorCreate.Bio)" />
+                    </MudItem>
+                </MudGrid>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" 
+                            Variant="Variant.Filled" 
+                            Color="Color.Primary" 
+                            Class="ml-auto">
+                            Create
+                    </MudButton>
+                </MudCardActions>
+            </EditForm> 
+        </MudPaper>    
+        <MudText Typo="Typo.caption">Fields marked with an * are mandatory</MudText>        
     </MudContainer>
 </div>
 

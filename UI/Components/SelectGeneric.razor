@@ -8,7 +8,8 @@
         Margin="Margin.Normal"
         Label="@Label"
         Immediate 
-        Required="@Required">
+        Required="@Required"
+        For="@ErrorMessage">
     <MudSelectItem Value="@("m")">male</MudSelectItem>
     <MudSelectItem Value="@("f")">female</MudSelectItem>
 </MudSelect>
@@ -17,6 +18,7 @@
 
     [Parameter] public T Value { get; set; }
     [Parameter] public EventCallback<T> ValueChanged { get; set; }
+    [Parameter] public System.Linq.Expressions.Expression<Func<T>> ErrorMessage { get; set; } = null;
     [Parameter] public string Label { get; set; }
     [Parameter] public int Lines { get; set; } = 1;
     [Parameter] public bool Required { get; set; } = false;

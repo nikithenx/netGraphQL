@@ -1,5 +1,7 @@
+
 query getAuthors {
     authors {
+        id
         firstName
         lastName
         age
@@ -11,18 +13,17 @@ query getAuthors {
 
 query getAuthor($id: String){
     author(id:$id){
+        id
         firstName
         lastName
-    }
-}
-
-query getAuthorsWithBooks {
-    authors {
-        firstName
-        lastName
+        age
+        gender
+        bio
+        icon
         books {
-            title
+            id
             isbn
+            title
         }
     }
 }
