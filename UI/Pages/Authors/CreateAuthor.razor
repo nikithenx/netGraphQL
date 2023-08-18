@@ -16,17 +16,20 @@
                 <MudItem xs="6" sm="6" md="3">
                     <TextFieldGeneric @bind-Value="@_authorCreate.FirstName"
                                       Label="First Name"
-                                      Required />
+                                      Required
+                                      ErrorMessage="@(() => _authorCreate.FirstName)" />
                 </MudItem>
                 <MudItem xs="6" sm="6" md="3">
                     <TextFieldGeneric @bind-Value="@_authorCreate.LastName"
                                       Label="Last Name"
-                                      Required />
+                                      Required
+                                      ErrorMessage="@(() => _authorCreate.LastName)" />
                 </MudItem>
                 <MudItem xs="6" sm="6" md="3">
                     <TextFieldGeneric @bind-Value="@_authorCreate.Age"
                                       Label="Age"
-                                      Required />
+                                      Required
+                                      ErrorMessage="@(() => _authorCreate.Age)" />
                 </MudItem>
                 <MudItem xs="6" sm="6" md="3">
                     <SelectGeneric @bind-Value="@_authorCreate.Gender"
@@ -37,7 +40,8 @@
                     <TextFieldGeneric @bind-Value="@_authorCreate.Bio"
                                       Label="Bio" 
                                       Lines="3"
-                                      Required />
+                                      Required
+                                      ErrorMessage="@(() => _authorCreate.Bio)" />
                 </MudItem>
             </MudGrid>
             <MudCardActions>
@@ -48,19 +52,22 @@
                         Create
                 </MudButton>
             </MudCardActions>
-        </EditForm>
-        
+        </EditForm>     
     </MudContainer>
 </div>
 
 
-@code {
+ @code {
 
-    private AuthorCreateDtoInput _authorCreate = new();
+    [Inject] AutoMapper.IMapper mapper { get; set; }
+
+    private AuthorCreate _authorCreate = new();
 
     private async Task OnCreateAsync()
     {
-        var result = await _client.CreateAuthor.ExecuteAsync(_authorCreate);
+        var input = mapper.Map<AuthorCreateDtoInput>(_authorCreate);
+
+        var result = await _client.CreateAuthor.ExecuteAsync(input);
         if (result is not null)
         {
             string guid = result.Data.CreateAuthor.Guid;

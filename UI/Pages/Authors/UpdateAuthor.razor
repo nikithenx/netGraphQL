@@ -1,0 +1,23 @@
+
+@page "/author/{Guid}"
+@inject INetGraphQLClient _client
+@inject ISnackbar Snackbar
+
+
+
+@code {
+
+    [Parameter] public string Guid { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(Guid))
+        {
+            var result = await _client.GetAuthor.ExecuteAsync(Guid);
+        }
+        else 
+        {
+            Snackbar.Add("Could not load Author data: Parameter was null", Severity.Error);
+        }
+    }
+}
