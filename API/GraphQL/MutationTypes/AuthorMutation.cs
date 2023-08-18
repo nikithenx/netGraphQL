@@ -1,38 +1,28 @@
 using API.Contracts;
 using API.DTOs.Authors;
 using API.Entities;
+using AutoMapper;
 
 namespace API.GraphQL.MutationTypes
 {
     [ExtendObjectType("Mutation")]
     public class AuthorMutation
     {
-        public async Task<Author> CreateAuthor([Service] IAuthorRepository repo, AuthorCreateDto createDto)
+        public async Task<Author> CreateAuthor(
+            [Service] IAuthorRepository repo, 
+            [Service] IMapper mapper,
+            AuthorCreateDto createDto)
         {
-            Author author = new()
-            {
-                FirstName = createDto.FirstName,
-                LastName = createDto.LastName,
-                Gender = createDto.Gender,
-                Age = createDto.Age,
-                Bio = createDto.Bio,
-            };
+            Author author = mapper.Map<Author>(createDto);
             return await repo.CreateAsync(author);
         }
             
-        public async Task<bool> UpdateAuthor([Service] IAuthorRepository repo, AuthorUpdateDto updateDto)
+        public async Task<bool> UpdateAuthor(
+            [Service] IAuthorRepository repo, 
+            [Service] IMapper mapper,
+            AuthorUpdateDto updateDto)
         {
-            Author author = new()
-            {
-                Id = updateDto.Id,
-                Guid = updateDto.Guid,
-                FirstName = updateDto.FirstName,
-                LastName = updateDto.LastName,
-                Gender = updateDto.Gender,
-                Age = updateDto.Age,
-                Bio = updateDto.Bio,
-                Icon = updateDto.Icon,
-            };
+            Author author = mapper.Map<Author>(updateDto);
             return await repo.UpdateAsync(author);
         }
             

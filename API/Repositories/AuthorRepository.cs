@@ -25,8 +25,6 @@ namespace API.Repositories
 
         public IQueryable<Author> GetAll() => _db.Authors;
 
-        public IQueryable<Author> GetAllWithBooks() => _db.Authors.Include(x => x.Books);
-
         public IQueryable<Author> GetById(string id) => _db.Authors.Where(x => x.Guid == id);
 
         public async Task<bool> UpdateAsync(Author author)

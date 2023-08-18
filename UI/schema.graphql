@@ -5,7 +5,6 @@
 
 type Query {
   authors: [Author]
-  authorsWithBooks: [Author]
   author(id: String): Author
   books: [Book]
   booksByAuthor(authorId: Int!): [Book]

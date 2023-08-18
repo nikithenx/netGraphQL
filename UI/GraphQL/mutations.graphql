@@ -4,3 +4,13 @@ mutation CreateAuthor($createDto: AuthorCreateDtoInput){
     guid
   }
 }
+
+mutation UpdateAuthor($updateDto: AuthorUpdateDtoInput){
+  updateAuthor(updateDto: $updateDto){
+  }
+}
+
+mutation DeleteAuthor($id: Int!){
+  deleteAuthor(id: $id){
+  }
+}
